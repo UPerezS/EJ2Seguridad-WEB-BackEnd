@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.mx.sda.dto.GrupoDto;
-import com.mx.sda.exception.objectNotFoundException;
+import com.mx.sda.exception.ObjectNotFoundException;
 import com.mx.sda.persistencia.entity.Grupo;
 import com.mx.sda.persistencia.entity.Grupo.GrupoEstatus;
 import com.mx.sda.persistencia.repository.GruposRepository;
@@ -42,7 +42,7 @@ public class GruposServiceImpl implements GruposService {
     @Override
     public Grupo updateOneById(Integer grupoId, GrupoDto grupoDto) {
         Grupo grupoBd = gruposRepository.findById(grupoId)
-                .orElseThrow(() -> new objectNotFoundException("No se Encuentra el Grupo"));
+                .orElseThrow(() -> new ObjectNotFoundException("No se Encuentra el Grupo"));
 
         grupoBd.setNombre(grupoDto.getNombre());
 
@@ -52,7 +52,7 @@ public class GruposServiceImpl implements GruposService {
     @Override
     public Grupo disableOneById(Integer grupoId) {
         Grupo grupoBd = gruposRepository.findById(grupoId)
-                .orElseThrow(() -> new objectNotFoundException("No se Encuentra el Grupo"));
+                .orElseThrow(() -> new ObjectNotFoundException("No se Encuentra el Grupo"));
 
         grupoBd.setEstatus(GrupoEstatus.DESHABILITADO);
 

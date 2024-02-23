@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.mx.sda.dto.AlumnosDto;
-import com.mx.sda.exception.objectNotFoundException;
+import com.mx.sda.exception.ObjectNotFoundException;
 import com.mx.sda.persistencia.entity.Alumnos;
 import com.mx.sda.persistencia.entity.Alumnos.AlumnoEstatus;
 import com.mx.sda.persistencia.entity.Grupo;
@@ -50,7 +50,7 @@ public class AlumnosServiceImpl implements AlumnosService {
 	@Override
 	public Alumnos updateOneById(Integer alumnoId, AlumnosDto alumnosDto) {
 		Alumnos alumnoBd = alumnosRepository.findById(alumnoId)
-				.orElseThrow(()-> new objectNotFoundException("No se Encuentra el Alumno"));
+				.orElseThrow(()-> new ObjectNotFoundException("No se Encuentra el Alumno"));
 		
 		alumnoBd.setNombre(alumnosDto.getNombre());
 		alumnoBd.setNumeroControl(alumnosDto.getNumeroControl());
@@ -65,7 +65,7 @@ public class AlumnosServiceImpl implements AlumnosService {
 	@Override
 	public Alumnos disableOneById(Integer alumnoId) {
 		Alumnos alumnoBd = alumnosRepository.findById(alumnoId)
-				.orElseThrow(()-> new objectNotFoundException("No se Encuentra el Alumno"));
+				.orElseThrow(()-> new ObjectNotFoundException("No se Encuentra el Alumno"));
 		
 		alumnoBd.setEstatus(AlumnoEstatus.DESHABILITADO);
 		return alumnosRepository.save(alumnoBd);
